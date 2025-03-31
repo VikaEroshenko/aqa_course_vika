@@ -19,7 +19,7 @@ public class Lesson_9 {
         int sum = a + b;
         if (sum >= 0) {
             System.out.println("Сумма положительная");
-        } else{
+        } else {
             System.out.println("Сумма отрицательная");
         }
     }
@@ -29,6 +29,7 @@ public class Lesson_9 {
     если лежит в пределах от 0 (0 исключительно) до 100 (100 включительно), то “Желтый”,
     если больше 100 (100 исключительно) - “Зеленый”
      */
+
     public void printColor() {
         int value = 100;
         if (value <= 0) {
@@ -79,10 +80,10 @@ public class Lesson_9 {
     Замечание: ноль считаем положительным числом!
      */
     public boolean cheking(int a) {
-        if (a >= 0) {
-            return false;
-        } else {
+        if (a < 0) {
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -172,11 +173,11 @@ public class Lesson_9 {
     14. Метод, принимающий на вход два аргумента: len и initialValue,
     и возвращающий одномерный массив типа int длиной len, каждая ячейка которого равна initialValue
      */
-    public void array(int len, int initialValue) {
+    public int[] createArray(int len, int initialValue) {
         int[] array = new int[len];
         for (int i = 0; i < array.length; i++) {
             array[i] = initialValue;
-            System.out.print(array[i] + " ");
         }
+        return array;
     }
 }

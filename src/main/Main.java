@@ -1,6 +1,8 @@
 
 package main;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -18,7 +20,7 @@ public class Main {
         task.compareNumbers();
 
         System.out.println("\n Task 5:");
-        System.out.println(task.chek(3,17));
+        System.out.println(task.chek(3, 17));
 
         System.out.println("\n Task 6:");
         task.evaluator(-1);
@@ -45,6 +47,6 @@ public class Main {
         task.diagonal();
 
         System.out.println("\n Task 14:");
-        task.array(5,25);
+        System.out.println(Arrays.toString(task.createArray(5, 25)));
     }
 }
