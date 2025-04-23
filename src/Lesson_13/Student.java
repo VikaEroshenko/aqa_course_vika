@@ -2,21 +2,24 @@ package Lesson_13;
 import java.util.*;
 
 public class Student {
-    private String name;
-    private String group;
+    private final String name;
+    private final String group;
     private int course;
-    private List<Integer> grades;
+    private final List<Integer> grades;
 
     public Student(String name, String group, int course, List<Integer> grades) {
         this.name = name;
         this.group = group;
         this.course = course;
-        this.grades = grades;
+        this.grades = new ArrayList<>(grades);
     }
 
-    // Геттеры и сеттеры
     public String getName() {
         return name;
+    }
+
+    public String getGroup() {
+        return group;
     }
 
     public int getCourse() {
@@ -24,34 +27,18 @@ public class Student {
     }
 
     public double getAverageGrade() {
-        return grades.stream().mapToInt(Integer::intValue).average().orElse(0);
+        return grades.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
     }
 
     public void promoteToNextCourse() {
-        if (getAverageGrade() >= 3) {
-            course++;
-        }
+        course++;
     }
 
-    // Метод для удаления студентов со средним баллом < 3
-    public static void removeUnderperformingStudents(Set<Student> students) {
-        students.removeIf(student -> student.getAverageGrade() < 3);
-    }
-
-    // Метод для перевода студентов на следующий курс (если средний балл >= 3)
-    public static void promoteEligibleStudents(Set<Student> students) {
-        for (Student student : students) {
-            student.promoteToNextCourse();
-        }
-    }
-
-    // Метод для вывода студентов заданного курса
-    public static void printStudents(Set<Student> students, int course) {
-        System.out.println("Студенты " + course + " курса:");
-        for (Student student : students) {
-            if (student.getCourse() == course) {
-                System.out.println(student.getName());
-            }
-        }
+    public void showInfo() {
+        System.out.printf("%s %s (курс: %d, средний балл: %.1f)%n",
+                name, group, course, getAverageGrade());
     }
 }

@@ -2,19 +2,19 @@ package Lesson_13;
 import java.util.*;
 
 public class PhoneDirectory {
-    private Map<String, List<String>> directory;
+    private final Map<String, Set<String>> surnameToNumbers = new HashMap<>();
+    private final Set<String> allPhoneNumbers = new HashSet<>();
 
-    public PhoneDirectory() {
-        directory = new HashMap<>();
-    }
-
-    // Добавление записи (фамилия + номер)
     public void add(String surname, String phoneNumber) {
-        directory.computeIfAbsent(surname, k -> new ArrayList<>()).add(phoneNumber);
+        if (allPhoneNumbers.contains(phoneNumber)) {
+            throw new IllegalArgumentException("Номер " + phoneNumber + " уже существует в справочнике");
+        }
+
+        surnameToNumbers.computeIfAbsent(surname, k -> new HashSet<>()).add(phoneNumber);
+        allPhoneNumbers.add(phoneNumber);
     }
 
-    // Получение всех номеров по фамилии
-    public List<String> get(String surname) {
-        return directory.getOrDefault(surname, Collections.emptyList());
+    public Set<String> get(String surname) {
+        return surnameToNumbers.getOrDefault(surname, Collections.emptySet());
     }
 }
